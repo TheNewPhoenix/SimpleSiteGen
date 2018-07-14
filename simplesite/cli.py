@@ -51,9 +51,10 @@ def main():
   site = SimpleSite()
   args = parse_args(site)
 
-  
-
   site.setup()
+
+  import simplesite.log as log
+  log.init(args.verbose, args.quiet)
 
   kwargs = dict((k, v) for k, v in vars(args).items() if k not in ['command', 'target', 'verbose', 'quiet'])
   args.target(**kwargs)

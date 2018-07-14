@@ -13,7 +13,7 @@ setup(
     long_description=readme,
     author='Jacob Doll',
     author_email='99jdoll@gmail.com',
-    url='https://github.com/kennethreitz/samplemod',
+    url='https://github.com/TheNewPhoenix/SimpleSiteGen',
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
     entry_points = {
