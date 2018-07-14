@@ -9,14 +9,17 @@ class SimpleSite(object):
 
   def setup(self):
     from simplesite.generator import Generator
+    from simplesite.server import Server
     self.Generator = Generator
+    self.Server = Server
   
   def create(self, path, title):
     generator = self.Generator(path, title)
     generator.generate()
   
   def serve(self, path, port):
-    print port
+    server = self.Server(path, port)
+    server.serve()
 
 def parse_args(site):
   parser = argparse.ArgumentParser(description="Simple static website generator and server.")
@@ -37,6 +40,8 @@ def parse_args(site):
   commands = [parser_create, parser_serve]
   for command in commands:
     command.add_argument('-d', '--path', default=os.getcwd(), help='The path of the current project')
+    command.add_argument('-v', '--verbose', action='store_true', help='Be more verbose')
+    command.add_argument('-q', '--quiet', action='store_true', help='Be quieter')
 
   args = parser.parse_args()
 
@@ -45,6 +50,8 @@ def parse_args(site):
 def main():
   site = SimpleSite()
   args = parse_args(site)
+
+  
 
   site.setup()
 
